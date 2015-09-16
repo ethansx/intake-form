@@ -1,0 +1,62 @@
+<?php
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+$name = $customer->getName();
+$email = $customer->getEmail();
+?>
+<div class="intake-form">
+    <form id="intake-form" name="intake-form"
+          action="<?php echo $this->getUrl('intakeform/') ?>index/send" method="post"
+          enctype="multipart/form-data" onsubmit="return checkAttachment();">
+        <fieldset class="group-select">
+            <h1 class="legend">Customer Intake Form</h1>
+            <ul>
+                <li>
+                    <div class="input-box">
+                        <p class="intake-form-download"><a
+                                href="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true) . 'media/wysiwyg/Patient_Intake_Form.pdf' ?>"
+                                target="_blank">Download Customer Intake Form</a></p>
+                        <label for="name">Your Full Name <span class="required">*</span></label><br/>
+                        <input name="name" id="name" title="Name" value="<?php echo $name ?>"
+                               class="required-entry input-text"
+                               type="text"/>
+                    </div>
+                    <div class="input-box">
+                        <label for="email">You Email <span class="required">*</span></label><br/>
+                        <input name="email" id="email" title="Email" value="<?php echo $email ?>"
+                               class="required-entry input-text validate-email" type="text"/>
+                    </div>
+                    <div class="input-box">
+                        <label for="attachment">Upload Intake Form<span class="required">*</span></label><br/>
+                        <input name="attachment" id="attachment" title="attachment" value="" class="required-entry"
+                               type="file"/>
+                    </div>
+                    <div class="input-box">
+                        <label for="comment">Comment?</label><br/>
+
+                        <textarea name="comment" id="comment" title="Comment" class="required-entry input-text"
+                                  style="height:100px;width:100%"></textarea>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="button-set">
+            <p class="required">* Required Fields</p>
+            <button class="form-button" type="submit"><span>Submit</span></button>
+        </div>
+    </form>
+</div>
+<script language="javascript">
+    function checkAttachment() {
+        var attachment = document.getElementById('attachment');
+        var fileName = attachment.value;
+        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+        if (ext == "pdf") {
+            return true;
+        }
+        else {
+            alert("Upload pdf file only");
+            attachment.focus();
+            return false;
+        }
+    }
+</script>

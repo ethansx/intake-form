@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <GaugeInteractive_IntakeForm>
+            <version>0.1.0</version>
+        </GaugeInteractive_IntakeForm>
+    </modules>
+    <frontend>
+        <routers>
+            <intakeform>
+                <use>standard</use>
+                <args>
+                    <module>GaugeInteractive_IntakeForm</module>
+                    <frontName>intakeform</frontName>
+                </args>
+            </intakeform>
+        </routers>
+        <layout>
+            <updates>
+                <intakeform module="GaugeInteractive_IntakeForm">
+                    <file>intakeform.xml</file>
+                </intakeform>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <helpers>
+            <intakeform>
+                <class>GaugeInteractive_IntakeForm_Helper</class>
+            </intakeform>
+        </helpers>
+        <models>
+            <intakeform>
+                <class>GaugeInteractive_IntakeForm_Model</class>
+            </intakeform>
+        </models>
+    </global>
+</config>
